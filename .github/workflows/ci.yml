@@ -1,8 +1,8 @@
 name: Standard CI
 on: push
 jobs:
-    build:
-        name: Build
+    lint:
+        name: Lint
         runs-on: ubuntu-latest
         steps:
             - name: checkout latest code
@@ -18,6 +18,21 @@ jobs:
 
             - name: Run lint
               run: npm run lint
+
+    build:
+        name: Build
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout latest code
+              uses: actions/checkout@v4
+
+            - name: Set up node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '18'
+            
+            - name: Install dependencies
+              run: npm install
 
             - name: Build project
               run: npm run build
