@@ -40,7 +40,7 @@ jobs:
 
     test:
         name: Test
-        needs: build
+        needs: [lint, build]
         runs-on: ubuntu-latest
         steps:
             - name: checkout latest code
